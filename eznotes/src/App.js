@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { useEffect, useState } from 'react'
 import './App.css';
@@ -6,16 +7,16 @@ import axios from 'axios';
 function App() {
 
   const [data, setData] = useState([]);
-  let [direc, setDirec] = useState([]);
+  let [direc, setDirec] = useState(['0']);
   let [page, setPage] = useState(0);
   const [pageData, setPageData] = useState(null);
   let [to , setTo] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(0);
 
 
-  function newData() {
+  function newData(too) {
 
-    setData(pageData.notes[to].Names);
+    setData(pageData.notes[too].Names);
     setPage(page+1);
 
   }
@@ -42,12 +43,23 @@ function App() {
 
   function next(e) {
 
-    const too = e.currentTarget.getAttribute("name");
+    let too = e.currentTarget.getAttribute("name");
     console.log('to' ,too);
 
     if(too!=null){
-      setTo(too);
       setPage(page);
+      //setTo(too);
+
+      if (pageData !== null){ 
+        const arr = direc;
+        arr.push(too);
+        setDirec(arr);
+        newData(too);
+        console.log('test');
+        
+        console.log('next',direc)
+        console.log(arr);
+      }
     }
   }
 
@@ -63,35 +75,13 @@ function App() {
     setData(pageData.notes[last].Names);
     }
     
-
-
   }
 
-  useEffect(() => {
-
-  }, [pageData])
 
   useEffect(() => {
     getData();
 
   }, [])
-
-  useEffect(() => {
-    if (pageData !== null)
-      newData();
-      const arr = direc;
-      arr.push(to);
-      setDirec(arr);
-      console.log(arr);
-  }, [to])
-
-
-  function isArray(obj) {
-    return !!obj && obj.constructor === Array;
-  }
-  function isObject(item) {
-    return (typeof item === "object" && !Array.isArray(item) && item !== null);
-  }
 
   return (
     <div className="App">
@@ -101,31 +91,28 @@ function App() {
       </header>
 
       <div className='pages'>
-        Current Page No. {page+1}<br />
+         <p>Page No.{page+1}</p>
 
 
         <button type='button' onClick={back} >Back</button>
 
-        {/* <button type='button' onClick={newData} >New Data</button> */}
-
 
         {
           data.map((names, index) => (
-
+          
+          
             <div key={index}>
-              <a name = {names.to} href = {names.link} key={index} target='_blank' onClick={next}>{names.name}</a><br />
+              {names.link === null ? 
+              <button name = {names.to} href = {names.link} key={index} target='_blank' onClick={next}>{names.name}</button> 
+              :<div className = 'a-div'><a name = {names.to} href = {names.link} key={index} target='_blank' onClick={next}>{names.name}</a></div> }
+              
+              <br />
               
             </div>))
         }
 
 
-        {/* {data.map((d, idx)=> ( 
-           (<p key={idx}>{d.name}</p>)
-        ))} */}
-
       </div>
-
-
 
 
     </div>

@@ -14,35 +14,49 @@ header{
   margin-left: 50px;
   border: solid 1px black;
   width: fit-content;
-  padding: 2px 5px
+  padding: 10px;
 }
 
-.pages button{
+button{
   margin: 4px;
 
 }
 
 button:hover{
   cursor:pointer;
+  background-color: #4e4e50;
+  color: white;
+}
+
+.a-div{
+  margin-top: 3px;
+  margin-left: 4px;
 }
 a{
+  padding-top:10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+  color: white;
+  
+}
+a:hover{
+  cursor:pointer;
+}
+/* a{
   
     font: bold 11px Arial;
     text-decoration: none;
     background-color: #EEEEEE;
     color: #333333;
-    padding: 2px 6px 2px 6px;
-    border-top: 1px solid #CCCCCC;
+    padding: 4px 6px ;
+    border-top: 2px solid #CCCCCC;
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
     
   
   
-}
+} */
 
 
-a:hover{
-  cursor:pointer;
-}
 
