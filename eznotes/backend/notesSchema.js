@@ -2,7 +2,7 @@ const mongoose  = require('mongoose');
 
 const notesSchema = new mongoose.Schema({
     
-    test:{
+    notes:{
         type:Array
     },
   

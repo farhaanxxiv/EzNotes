@@ -1,11 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Upload from './Upload'
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 ReactDOM.render(
-    <App />
-  ,
+
+  <Router>
+      <Link to = '/'>Home</Link>
+      <Link to = '/upload'>Upload</Link>
+
+      <Switch>
+        <Route path = '/upload' component={Upload}/>
+        <Route path = '/' component={App}/>
+      </Switch>
+
+  </Router>
+    ,
   document.getElementById('root')
 );
 

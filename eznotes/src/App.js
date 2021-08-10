@@ -26,9 +26,8 @@ function App() {
     axios.get('http://localhost:9000/get').then(function (response) {
       console.log('Response Data is: ',response.data[0]);
 
-      setData(response.data[0].notes[0].Names);
+      setData(response.data[0].notes[0]);
       setPageData(response.data[0]);
-
 
     })
       .catch(function (error) {

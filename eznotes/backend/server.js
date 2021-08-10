@@ -23,19 +23,39 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     });
 
 app.get("/", (req, res) => {
-  res.send('Welcome to EzNotes');
+  res.send('Welcome to EzNotess');
 
   });
   
 app.get("/get", async (req,res) => {
   try{
-    const note = await Notes.find({_id:"61025f41d5018ea19885b108"});
+    const note = await Notes.find({_id:"6112263d6ca85619c0d4bedc"});
+    
     res.send(note);
 
     }catch(e){
         console.log(e);
     }
 });
+
+
+app.post('/add', async(req,res)=>{
+
+  try {
+    let note = new Notes({
+        notes: req.body.arr
+        
+    });
+
+    note = await note.save()
+    console.log(note);
+  } catch (e) {
+
+
+    console.error(e);
+
+}
+})
  
 
   const PORT = '9000'; 
