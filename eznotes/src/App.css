@@ -37,6 +37,7 @@ a{
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: underline;
   color: white;
+  padding-right: 8px;
   
 }
 a:hover{
@@ -50,6 +51,7 @@ a:hover{
   border-width: 1px;
   width: max-content;
   padding :5px;
+  margin: 8px;
 }
 
 

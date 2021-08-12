@@ -1,8 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import Edit from './Edit'
+import Pages from './Pages'
 import { useForm } from './useForm'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
 
 
 function Upload() {
@@ -11,6 +20,8 @@ function Upload() {
     const [arr, setArr] = useState([]);
     const [values, handleChange] = useForm({ name: '', type: 'folder', to: 0, link: '' });
     let [pgno, setPgno] = useState(0);
+    const [refresh, setRefresh] = useState(0)
+
 
 
     function newItem() {
@@ -19,6 +30,7 @@ function Upload() {
         console.log('to:', values.to)
         console.log('url:', values.url)
         console.log('json Data:', jsondat)
+        setPgno(pgno)
 
 
 
@@ -38,7 +50,9 @@ function Upload() {
 
             jsondat.push(items)
             setjson(jsondat)
+            setRefresh(Math.floor(Math.random() * 1000) + 1)
             console.log(jsondat)
+
 
         } else {
             const name = values.name
@@ -49,15 +63,15 @@ function Upload() {
             items['name'] = name
             items['link'] = link
 
-
             jsondat.push(items)
             setjson(jsondat)
+            setRefresh(Math.floor(Math.random() * 1000) + 1)
+
             console.log(jsondat)
         }
     }
 
     function save() {
-        let isarray = Array.isArray(jsondat);
         arr[pgno] = jsondat
         setPgno(pgno + 1);
 
@@ -76,11 +90,14 @@ function Upload() {
             })
     }
 
+    useEffect(() => {
+
+        console.log('dsaa')
+    }, [jsondat])
+
 
     return (
         <div>
-
-
 
             <p>This is Upload</p>
 
@@ -115,32 +132,34 @@ function Upload() {
             <button type='button' onClick={upload}>Upload to MongoDB</button>
 
 
-                {/* <p>Editing Page: {page}</p> */}
 
-                {jsondat.map((obj, index) => 
-                    <div>
-                        {obj.link === null ?
-                            <button name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</button>
-                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</a></div>}
-                    </div>
-                )}
+            <Router>
+           
+                <Link to='/edit'>Edit page</Link>
+                <Link to='/pages'>Display all Pages</Link>
+
+                <Switch>
+                    <Route path='/edit' >
+                        <Edit arr = {jsondat}/>
+                    </Route>
+                    <Route path='/pages'>
+                        <Pages arr = {arr} />
+                    </Route>
+                    <Route path='/'>
+                        <Edit arr = {jsondat} />
+                    </Route>
+                </Switch>
+            </Router>
+
+
+           
+            
 
 
 
-            {
-                arr.map((notes) =>
-                    <div className='show-data'>
-                        {notes.map((obj, index) =>
-                            <div key={index}>
-                                {obj.link === null ?
-                                    <button name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</button>
-                                    : <div className='a-div'><a name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</a></div>}
 
-                                <br/>
 
-                                {index === notes.length - 1 ? <p>Navigate to Page {obj.to}</p> : <p></p>}
-                            </div>)}
-                        </div>)}
+
         </div>
     );
 
