@@ -36,9 +36,9 @@ function App() {
       .catch(function (error) {
         console.log(error);
       })
-      // .then(function () {
-      //   // always executed
-      // });
+      .then(function () {
+        // always executed
+      });
 
   }
 
