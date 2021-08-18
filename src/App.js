@@ -94,14 +94,18 @@ function App() {
         <h1>Welcome to EzNotes</h1>
       </header>
 
+      <div className = 'whole-div'>
          <p>Page No.{page+1}</p>
+
+
+
+         <img class = 'img-back' width = '45px' height='45px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
 
          <div className='pages'>
 
-        <img width = '50px' height='50px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
 
 
-        {Array.isArray(data) || null || undefined  ?
+        {Array.isArray(data) || null || undefined ?
           data.map((names, index) => (
           
           
@@ -115,7 +119,7 @@ function App() {
             </div>)):<p>The Folder is Empty</p>
         }
 
-
+</div>
       </div>
 
 
