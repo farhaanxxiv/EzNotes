@@ -8,10 +8,12 @@ import backarrow from './img/backarrow.png'
 function App() {
 
   const [data, setData] = useState([]);
-  let [direc, setDirec] = useState(['0']);
+  let [direc, setDirec] = useState([{name:'',pg:0}]);
   let [page, setPage] = useState(0);
   const [pageData, setPageData] = useState(null);
   const [refresh, setRefresh] = useState(0);
+
+  const[currentFolder, setFolder] = useState('')
 
 
   function newData(too) {
@@ -19,7 +21,6 @@ function App() {
     setData(pageData.notes[too]);
     setPage(page+1);
 
-    console.log(data)
   }
 
   function getData() {
@@ -34,9 +35,9 @@ function App() {
       .catch(function (error) {
         console.log(error);
       })
-      .then(function () {
-        // always executed
-      });
+      // .then(function () {
+      //   // always executed
+      // });
 
   }
 
@@ -44,33 +45,42 @@ function App() {
   function next(e) {
 
     let too = e.currentTarget.getAttribute("name");
-    console.log('to' ,too);
+    const name = e.target.getAttribute('title')
+    setFolder(name)
 
     if(too!=null){
       setPage(page);
 
-      if (pageData !== null){ 
+      if (pageData !== null){
+
         const arr = direc;
-        arr.push(too);
+
+        
+        let obj ={}
+
+        obj['name'] = name
+        obj['pg'] = too
+
+        arr.push(obj);
+
         setDirec(arr);
         newData(too);
-        console.log('test');
         
-        console.log('next',direc)
-        console.log(arr);
+        
       }
     }
   }
 
   function back() {
+
+    if(page===1){
+      setFolder('')
+    }
     if (page >= 1){ 
     setPage(page-1);
-
-    const popped = direc.pop();
-    console.log('popped',popped);
-    console.log('backArray',direc);
-    const last = direc[direc.length-1];
-    console.log('last',last)
+    direc.pop();
+    const last = direc[direc.length-1].pg;
+    setFolder(direc[direc.length-1].name)
     setData(pageData.notes[last]);
     }
     
@@ -97,9 +107,13 @@ function App() {
       <div className = 'whole-div'>
          <p>Page No.{page+1}</p>
 
+         {currentFolder!=='' ? <p>Current Folder:{currentFolder}</p> :<p></p> }
+        
 
 
-         <img class = 'img-back' width = '45px' height='45px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
+
+
+         <img alt = 'back-icon' class = 'img-back' width = '45px' height='45px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
 
          <div className='pages'>
 
@@ -111,8 +125,8 @@ function App() {
           
             <div key={index}>
               {names.link === null ? 
-              <button name = {names.to} href = {names.link} key={index} target='_blank' onClick={next}>{names.name}</button> 
-              :<div className = 'a-div'><a name = {names.to} href = {names.link} key={index} target='_blank' onClick={next}>{names.name}</a></div> }
+              <button name = {names.to} href = {names.link} key={index} title= {names.name} rel="noreferrer" target='_blank' onClick={next}>{names.name}</button> 
+              :<div className = 'a-div'><a name = {names.to} href = {names.link} key={index} rel="noreferrer" target='_blank' onClick={next}>{names.name}</a></div> }
               
               <br />
               

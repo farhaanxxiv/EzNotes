@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from './useForm'
 import axios from 'axios';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 
 
@@ -36,7 +36,6 @@ function Upload() {
 
             const name = values.name
             const link = null
-           // const to = values.to
 
             let items = {}
             items['name'] = name;
@@ -53,7 +52,6 @@ function Upload() {
             const name = values.name
             const link = values.link
 
-            let i = 0;
             let items = {}
             items['name'] = name
             items['link'] = link
@@ -139,8 +137,8 @@ function Upload() {
                 jsondat.map((obj, index) =>
                     <div key={index}>
                         {obj.link === null ?
-                            <div><button id = 'btn' name={obj.to} href={obj.link} key={index} target='_blank' onClick ={accessFolder}>{obj.name} </button><label htmlFor='btn'>Navigates to {obj.to}</label></div>
-                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</a></div> }
+                            <div><button id = 'btn' name={obj.to} href={obj.link} key={index} rel="noreferrer" target='_blank' onClick ={accessFolder}>{obj.name} </button><label htmlFor='btn'>Navigates to {obj.to}</label></div>
+                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} rel="noreferrer" target='_blank' >{obj.name}</a></div> }
                     </div>
                 )  }
 

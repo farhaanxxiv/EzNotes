@@ -63,7 +63,6 @@ function Test() {
             const name = values.name
             const link = values.link
 
-            let i = 0;
             let items = {}
             items['name'] = name
             items['link'] = link
@@ -231,9 +230,7 @@ function Test() {
 
     function upload() {
 
-        let id = ''
 
-        if (values.id !== '') id = values.id
 
         axios.post('http://localhost:9000/add', { arr, pg })
             .then(function (response) {
@@ -308,8 +305,8 @@ function Test() {
                 jsondat.map((obj, index) =>
                     <div key={index}>
                         {obj.link === null ?
-                            <div><button id='btn' name={obj.to} href={obj.link} key={index} indx={index} target='_blank' onClick={accessFolder}>{obj.name} </button><label htmlFor='btn'>Navigates to {obj.to}</label><button indx={index} onClick={deleteEl}>X</button><button indx={index} onClick={changeName}>Edit Name</button><button indx={index} onClick={changeEl}>C</button></div>
-                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} indx={index} target='_blank' >{obj.name}</a><button indx={index} onClick={deleteEl}>X</button><button indx={index} onClick={changeLink}>Edit Link</button><button indx={index} onClick={changeName}>Edit Name</button><button indx={index} onClick={changeEl}>C</button></div>}
+                            <div><button id='btn' name={obj.to} href={obj.link} key={index} indx={index} rel="noreferrer" target='_blank' onClick={accessFolder}>{obj.name} </button><label htmlFor='btn'>Navigates to {obj.to}</label><button indx={index} onClick={deleteEl}>X</button><button indx={index} onClick={changeName}>Edit Name</button><button indx={index} onClick={changeEl}>C</button></div>
+                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} indx={index} rel="noreferrer" target='_blank' >{obj.name}</a><button indx={index} onClick={deleteEl}>X</button><button indx={index} onClick={changeLink}>Edit Link</button><button indx={index} onClick={changeName}>Edit Name</button><button indx={index} onClick={changeEl}>C</button></div>}
                     </div>
                 )}
 
