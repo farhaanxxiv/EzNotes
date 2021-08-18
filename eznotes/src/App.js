@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './App.css';
 import axios from 'axios';
+import backarrow from './img/backarrow.png'
 
 function App() {
 
@@ -10,15 +11,15 @@ function App() {
   let [direc, setDirec] = useState(['0']);
   let [page, setPage] = useState(0);
   const [pageData, setPageData] = useState(null);
-  let [to , setTo] = useState(0);
   const [refresh, setRefresh] = useState(0);
 
 
   function newData(too) {
 
-    setData(pageData.notes[too].Names);
+    setData(pageData.notes[too]);
     setPage(page+1);
 
+    console.log(data)
   }
 
   function getData() {
@@ -47,7 +48,6 @@ function App() {
 
     if(too!=null){
       setPage(page);
-      //setTo(too);
 
       if (pageData !== null){ 
         const arr = direc;
@@ -71,7 +71,7 @@ function App() {
     console.log('backArray',direc);
     const last = direc[direc.length-1];
     console.log('last',last)
-    setData(pageData.notes[last].Names);
+    setData(pageData.notes[last]);
     }
     
   }
@@ -82,6 +82,11 @@ function App() {
 
   }, [])
 
+  useEffect(()=>{
+    setRefresh(Math.floor(Math.random() * 1000) + 1)
+
+  },[data])
+
   return (
     <div className="App">
 
@@ -89,14 +94,14 @@ function App() {
         <h1>Welcome to EzNotes</h1>
       </header>
 
-      <div className='pages'>
          <p>Page No.{page+1}</p>
 
+         <div className='pages'>
 
-        <button type='button' onClick={back} >Back</button>
+        <img width = '50px' height='50px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
 
 
-        {
+        {Array.isArray(data) || null || undefined  ?
           data.map((names, index) => (
           
           
@@ -107,7 +112,7 @@ function App() {
               
               <br />
               
-            </div>))
+            </div>)):<p>The Folder is Empty</p>
         }
 
 

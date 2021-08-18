@@ -18,9 +18,15 @@ function Upload() {
 
     const [jsondat, setjson] = useState([]);
     const [arr, setArr] = useState([]);
+    let [direc, setDirec] = useState(['0']);
     const [values, handleChange] = useForm({ name: '', type: 'folder', to: 0, link: '' });
-    let [pgno, setPgno] = useState(0);
+    const [pgno, setPgno] = useState(0);
     const [refresh, setRefresh] = useState(0)
+    const [pg, setPg] = useState(1)
+    const[newTo, setnewTo] = useState(0)
+
+    // const[pgtobeAssigned, setAssigned] = useState(0)
+    // const[index,setIndex] = useState(0)
 
 
 
@@ -41,16 +47,16 @@ function Upload() {
 
             const name = values.name
             const link = null
-            const to = values.to
+           // const to = values.to
 
             let items = {}
             items['name'] = name;
             items['link'] = link
-            items['to'] = to
+            items['to'] = pg
 
             jsondat.push(items)
             setjson(jsondat)
-            setRefresh(Math.floor(Math.random() * 1000) + 1)
+            setPg(pg+1)
             console.log(jsondat)
 
 
@@ -71,8 +77,8 @@ function Upload() {
         }
     }
 
-    function save() {
-        arr[pgno] = jsondat
+    function save(pgNo) {
+        arr[pgNo] = jsondat
         setPgno(pgno + 1);
 
         setArr(arr)
@@ -90,16 +96,24 @@ function Upload() {
             })
     }
 
-    useEffect(() => {
+    function accessFolder(e){
 
-        console.log('dsaa')
-    }, [jsondat])
+        const pg = e.currentTarget.getAttribute('name')
+        console.log(pg)
 
+        save(pg)
+
+        
+
+        
+
+
+    }
+  
 
     return (
         <div>
 
-            <p>This is Upload</p>
 
             <button type='button' onClick={newItem}>Tests</button>
 
@@ -132,8 +146,18 @@ function Upload() {
             <button type='button' onClick={upload}>Upload to MongoDB</button>
 
 
+            {
+                jsondat.map((obj, index) =>
+                    <div key={index}>
+                        {obj.link === null ?
+                            <div><button id = 'btn' name={obj.to} href={obj.link} key={index} target='_blank' onClick ={accessFolder}>{obj.name} </button><label htmlFor='btn'>Navigates to {obj.to}</label></div>
+                            : <div className='a-div'><a name={obj.to} href={obj.link} key={index} target='_blank' >{obj.name}</a></div> }
+                    </div>
+                )  }
 
-            <Router>
+
+
+            {/* <Router>
            
                 <Link to='/edit'>Edit page</Link>
                 <Link to='/pages'>Display all Pages</Link>
@@ -149,7 +173,7 @@ function Upload() {
                         <Edit arr = {jsondat} />
                     </Route>
                 </Switch>
-            </Router>
+            </Router> */}
 
 
            

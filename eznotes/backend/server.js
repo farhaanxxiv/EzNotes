@@ -11,55 +11,79 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-const uri  = process.env.MONGO_URL;
+const uri = process.env.MONGO_URL;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log("MongoDB Connected");
-    })
- 
-    .catch(err => {
-        console.log("Could not connect", err);
-    });
+  .then(() => {
+    console.log("MongoDB Connected");
+  })
+
+  .catch(err => {
+    console.log("Could not connect", err);
+  });
 
 app.get("/", (req, res) => {
   res.send('Welcome to EzNotess');
 
-  });
-  
-app.get("/get", async (req,res) => {
-  try{
-    const note = await Notes.find({_id:"6112263d6ca85619c0d4bedc"});
-    
+});
+
+app.get("/get", async (req, res) => {
+  try {
+    const note = await Notes.find({ _id: "61176ef89e4da61140be5297" });
+
     res.send(note);
 
-    }catch(e){
-        console.log(e);
-    }
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 
-app.post('/add', async(req,res)=>{
+app.post('/add', async (req, res) => {
+
+ 
+    try {
+      let note = new Notes({
+        notes: req.body.arr,
+        pages: req.body.pg,
+      });
+  
+      note = await note.save()
+      console.log(note);
+    }catch (e) {
+
+      console.error(e);
+  
+    }
+  
+})
+
+
+app.post('/update',async  (req,res)=>{
+
+  let doc = await Notes.findOneAndUpdate({_id:req.body.id}, {notes:req.body.arr, pages:req.body.pg});
+  console.log(doc)
+  res.send(doc)
+
+})
+
+
+app.get('/:id', async (req, res) => {
 
   try {
-    let note = new Notes({
-        notes: req.body.arr
-        
-    });
+    const note = await Notes.find({ _id: req.params.id });
 
-    note = await note.save()
-    console.log(note);
+    return res.send(note);
+
   } catch (e) {
+    console.log(e);
+  }
 
-
-    console.error(e);
-
-}
 })
- 
 
-  const PORT = '9000'; 
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-  });
+
+const PORT = '9000';
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
 

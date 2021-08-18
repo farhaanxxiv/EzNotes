@@ -5,6 +5,9 @@ const notesSchema = new mongoose.Schema({
     notes:{
         type:Array
     },
+    pages:{
+        type: Number
+    },
   
     
   });

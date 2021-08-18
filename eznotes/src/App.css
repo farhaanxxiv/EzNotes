@@ -1,58 +1,68 @@
-body{
-  margin:0;
+body {
+  margin          : 0;
   background-color: #1a1a1d;
-  color:white;
+  color           : white;
+  font-family     : Arial, Helvetica, sans-serif;
 }
 
-header{
-  color: white;
-  text-align: center;
+header {
+  color      : white;
+  text-align : center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.pages{
+.pages {
   margin-left: 50px;
-  border: solid 1px black;
-  width: fit-content;
-  padding: 10px;
+  border     : solid 1px black;
+  width      : fit-content;
+  padding    : 10px;
 }
 
-button{
+button {
   margin: 4px;
 
 }
 
-button:hover{
-  cursor:pointer;
+button:hover {
+  cursor          : pointer;
   background-color: #4e4e50;
-  color: white;
+  color           : white;
 }
 
-.a-div{
-  margin-top: 3px;
+.a-div {
+  margin-top : 3px;
   margin-left: 4px;
 }
-a{
-  padding-top:10px;
-  font-family: Arial, Helvetica, sans-serif;
+
+a {
+  padding-top    : 10px;
+  font-family    : Arial, Helvetica, sans-serif;
   text-decoration: underline;
-  color: white;
-  padding-right: 8px;
-  
-}
-a:hover{
-  cursor:pointer;
+  color          : white;
+  padding-right  : 8px;
+
 }
 
-.show-data{
-  border-color: white;
-  border-style: solid;
-  border-radius: 1px;
-  border-width: 1px;
-  width: max-content;
-  padding :5px;
-  margin: 8px;
+a:hover {
+  cursor: pointer;
 }
+
+.show-data {
+  border-color : white;
+  border-style : solid;
+  border-radius: 1px;
+  border-width : 1px;
+  width        : max-content;
+  padding      : 5px;
+  margin       : 8px;
+}
+
+
+#img-back:hover {
+  cursor: pointer;
+  color : #4e4e50;
+}
+
 
 
 
@@ -71,6 +81,3 @@ a:hover{
   
   
 } */
-
-
-
