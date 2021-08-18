@@ -14,10 +14,6 @@ function Upload() {
     const [refresh, setRefresh] = useState(0)
     const [pg, setPg] = useState(1)
 
-    // const[pgtobeAssigned, setAssigned] = useState(0)
-    // const[index,setIndex] = useState(0)
-
-
 
     function newItem() {
         console.log('name:', values.name);

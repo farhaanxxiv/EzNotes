@@ -115,7 +115,7 @@ function App() {
 
 
 
-         <img alt = 'back-icon' class = 'img-back' width = '45px' height='45px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
+         <img alt = 'back-icon' className = 'img-back' width = '45px' height='45px' id = 'img-back' src = {backarrow} type='button' onClick={back} />
 
          <div className='pages'>
 
