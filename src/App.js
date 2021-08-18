@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import './App.css';
 import axios from 'axios';
 import backarrow from './img/backarrow.png'
+import eznotes from './img/eznotes.png'
+
 
 function App() {
 
@@ -101,6 +103,8 @@ function App() {
     <div className="App">
 
       <header>
+      <link rel="icon" type="image/png" href={eznotes}/>
+
         <h1>Welcome to EzNotes</h1>
       </header>
 
