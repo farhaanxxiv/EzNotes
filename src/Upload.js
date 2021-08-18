@@ -1,16 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-import Edit from './Edit'
-import Pages from './Pages'
 import { useForm } from './useForm'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 
 
 
@@ -18,12 +9,10 @@ function Upload() {
 
     const [jsondat, setjson] = useState([]);
     const [arr, setArr] = useState([]);
-    let [direc, setDirec] = useState(['0']);
     const [values, handleChange] = useForm({ name: '', type: 'folder', to: 0, link: '' });
     const [pgno, setPgno] = useState(0);
     const [refresh, setRefresh] = useState(0)
     const [pg, setPg] = useState(1)
-    const[newTo, setnewTo] = useState(0)
 
     // const[pgtobeAssigned, setAssigned] = useState(0)
     // const[index,setIndex] = useState(0)
