@@ -105,7 +105,7 @@ function App() {
       <header>
       <link rel="icon" type="image/png" href={eznotes}/>
 
-        <h1>Welcome to EzNotes</h1>
+        <h1>EzNotes</h1>
       </header>
 
       <div className = 'whole-div'>
