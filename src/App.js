@@ -15,9 +15,7 @@ function App() {
   let [page, setPage] = useState(0);
   const [pageData, setPageData] = useState(null);
   const [refresh, setRefresh] = useState(0);
-
   const[currentFolder, setFolder] = useState('')
-
 
   function newData(too) {
 
@@ -25,8 +23,6 @@ function App() {
     setPage(page+1);
 
   }
-
- 
 
 
   function next(e) {
@@ -72,8 +68,6 @@ function App() {
     }
     
   }
-
-
   useEffect(() => {
 
     const api = process.env.REACT_APP_API
