@@ -8,6 +8,8 @@ import backarrow from './img/backarrow.png'
 
 function App() {
 
+  const api = process.env.REACT_APP_API;
+
   const [data, setData] = useState([]);
   let [direc, setDirec] = useState([{name:'',pg:0}]);
   let [page, setPage] = useState(0);
@@ -26,7 +28,7 @@ function App() {
 
   function getData() {
 
-    axios.get('http://localhost:9000/get').then(function (response) {
+    axios.get(api).then(function (response) {
       console.log('Response Data is: ',response.data[0]);
 
       setData(response.data[0].notes[0]);
