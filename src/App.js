@@ -27,6 +27,7 @@ function App() {
   }
 
   function getData() {
+    console.log(api)
 
     axios.get(api).then(function (response) {
       console.log('Response Data is: ',response.data[0]);

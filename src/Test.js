@@ -23,7 +23,7 @@ function Test() {
 
         setPage(0)
         setDirec(['0'])
-        axios.get('http://localhost:9000/' + values.id).then(function (response) {
+        axios.get('https://eznotes-api.herokuapp.com/' + values.id).then(function (response) {
             console.log('Response Data is: ', response.data[0]);
 
             setjson(response.data[0].notes[0]);
@@ -232,7 +232,7 @@ function Test() {
 
 
 
-        axios.post('http://localhost:9000/add', { arr, pg })
+        axios.post('https://eznotes-api.herokuapp.com//add', { arr, pg })
             .then(function (response) {
                 console.log(response);
             }).catch(function (error) {
@@ -247,7 +247,7 @@ function Test() {
         if (values.id !== '') {
             id = values.id
 
-            axios.post('http://localhost:9000/update', { arr, pg, id })
+            axios.post('https://eznotes-api.herokuapp.com//update', { arr, pg, id })
                 .then(function (response) {
                     alert('Document Uploaded')
                     console.log(response);
