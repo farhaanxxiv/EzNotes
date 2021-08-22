@@ -70,8 +70,7 @@ function App() {
   }
   useEffect(() => {
 
-    const api = process.env.REACT_APP_API
-    axios.get(api).then(function (response) {
+    axios.get('https://eznotes-api.herokuapp.com/61176ef89e4da61140be5297').then(function (response) {
       console.log('Response Data is: ',response.data[0]);
 
       setData(response.data[0].notes[0]);
