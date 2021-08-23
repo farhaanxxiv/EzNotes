@@ -16,6 +16,8 @@ function App() {
   const [pageData, setPageData] = useState(null);
   const [refresh, setRefresh] = useState(0);
   const[currentFolder, setFolder] = useState('')
+  const[loading, setLoading] = useState(true)
+
 
   function newData(too) {
 
@@ -75,6 +77,9 @@ function App() {
 
       setData(response.data[0].notes[0]);
       setPageData(response.data[0]);
+      setLoading(false)
+    //setRefresh(Math.floor(Math.random() * 1000) + 1)
+
 
     })
       .catch(function (error) {
@@ -99,11 +104,21 @@ function App() {
         <h1>EzNotes</h1>
       </header>
 
-      <div className = 'whole-div'>
+
+
+      { loading ?  <div className = 'spinner'>
+         <div class="loadingio-spinner-ellipsis-js28swoqlzo">
+	<div className="load-spinner">
+    <div></div><div></div><div></div><div></div><div></div>
+	</div></div>
+        </div>
+        :
+         <div className = 'whole-div'>
          <p>Page No.{page+1}</p>
 
          {currentFolder!=='' ? <p>Current Folder:{currentFolder}</p> :<p></p> }
-        
+
+
 
 
 
@@ -130,6 +145,7 @@ function App() {
 
 </div>
       </div>
+}
 
 
     </div>
