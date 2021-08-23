@@ -232,7 +232,7 @@ function Test() {
 
 
 
-        axios.post('https://eznotes-api.herokuapp.com//add', { arr, pg })
+        axios.post('https://eznotes-api.herokuapp.com/add', { arr, pg })
             .then(function (response) {
                 console.log(response);
             }).catch(function (error) {
@@ -247,7 +247,7 @@ function Test() {
         if (values.id !== '') {
             id = values.id
 
-            axios.post('https://eznotes-api.herokuapp.com//update', { arr, pg, id })
+            axios.post('https://eznotes-api.herokuapp.com/update', { arr, pg, id })
                 .then(function (response) {
                     alert('Document Uploaded')
                     console.log(response);

@@ -73,7 +73,7 @@ function App() {
   useEffect(() => {
 
     axios.get('https://eznotes-api.herokuapp.com/61176ef89e4da61140be5297').then(function (response) {
-      console.log('Response Data is: ',response.data[0]);
+      console.log('WHY?');
 
       setData(response.data[0].notes[0]);
       setPageData(response.data[0]);
@@ -107,7 +107,7 @@ function App() {
 
 
       { loading ?  <div className = 'spinner'>
-         <div class="loadingio-spinner-ellipsis-js28swoqlzo">
+         <div className="loadingio-spinner-ellipsis-js28swoqlzo">
 	<div className="load-spinner">
     <div></div><div></div><div></div><div></div><div></div>
 	</div></div>
