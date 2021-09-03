@@ -86,6 +86,9 @@ function App() {
   }
   useEffect(() => {
 
+    
+    console.log('repush');
+
     const reactApi = process.env.REACT_APP_API;
     axios.get(reactApi).then(function (response) {
     console.log(reactApi);
