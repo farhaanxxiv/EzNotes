@@ -72,8 +72,9 @@ function App() {
   }
   useEffect(() => {
 
-    axios.get('https://eznotes-api.herokuapp.com/61176ef89e4da61140be5297').then(function (response) {
-      console.log('WHY?');
+    const reactApi = process.env.REACT_APP_API;
+    axios.get(reactApi).then(function (response) {
+      console.log(reactApi);
 
       setData(response.data[0].notes[0]);
       setPageData(response.data[0]);
