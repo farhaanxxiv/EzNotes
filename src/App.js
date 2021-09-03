@@ -90,6 +90,8 @@ function App() {
     console.log('repush');
 
     const reactApi = process.env.REACT_APP_API;
+    console.log(reactApi);
+
     axios.request({
       method: "get",
       url: reactApi,
