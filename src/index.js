@@ -4,7 +4,7 @@ import App from './App';
 // import Upload from './Upload'
 // import Test from './Test'
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+//import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 
 ReactDOM.render(

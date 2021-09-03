@@ -90,7 +90,7 @@ function App() {
     console.log('repush');
 
     const reactApi = process.env.REACT_APP_API;
-    console.log(reactApi);
+
 
     axios.request({
       method: "get",
@@ -98,7 +98,6 @@ function App() {
       crossDomain: true
     }).then(function (response) {
     console.log(reactApi);
-    console.log('repush');
 
 
 
