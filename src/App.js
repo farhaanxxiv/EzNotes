@@ -1,5 +1,7 @@
 
 import React from 'react'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { useEffect, useState } from 'react'
 import './App.css';
 import axios from 'axios';
@@ -17,6 +19,18 @@ function App() {
   const [refresh, setRefresh] = useState(0);
   const[currentFolder, setFolder] = useState('')
   const[loading, setLoading] = useState(true)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAh_gsdv6gYvVu3hR6DMcasfikjLwyPppU",
+    authDomain: "eznotes-24.firebaseapp.com",
+    projectId: "eznotes-24",
+    storageBucket: "eznotes-24.appspot.com",
+    messagingSenderId: "717460107617",
+    appId: "1:717460107617:web:5bd3a01500cf92f2bd9520",
+    measurementId: "G-DFDPTZ55QL"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
 
 
   function newData(too) {
