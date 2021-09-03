@@ -74,7 +74,10 @@ function App() {
 
     const reactApi = process.env.REACT_APP_API;
     axios.get(reactApi).then(function (response) {
-      console.log(reactApi);
+    console.log(reactApi);
+    console.log('repush');
+
+
 
       setData(response.data[0].notes[0]);
       setPageData(response.data[0]);
