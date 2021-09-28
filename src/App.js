@@ -20,7 +20,6 @@ function App() {
   const [searched, setSearched] = useState([])
 
   const id = JSON.parse(process.env.REACT_APP_FIREBASE)
-  console.log(id)
   const app = initializeApp(id);
   getAnalytics(app);
 
@@ -53,7 +52,6 @@ function App() {
         if (pageData.notes[index] !== null) {
           pageData.notes[index].forEach((element,index,array) => {
             arr.push(element)
-
           })
         }
       })
@@ -121,7 +119,7 @@ function App() {
   }
   useEffect(() => {
 
-    const reactApi = process.env.REACT_APP_API;
+    const reactApi = process.env.REACT_APP_API
 
     axios.request({
       method: "get",
