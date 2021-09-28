@@ -2,7 +2,6 @@ import React from 'react'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useEffect, useState } from 'react'
-import './App.css';
 import axios from 'axios';
 import backarrow from './img/backarrow.png'
 import { useForm } from './useForm'
@@ -153,17 +152,14 @@ function App() {
   return (
     <div className="App">
 
-      <header>
-
-        <h1>EzNotes</h1>
-      </header>
+      
       <div className = 'search'>
       <label htmlFor="search">Seach for Subjects,Links : </label>
       <input id = 'search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
       </div>
 
       { loading ? <div className='spinner'>
-        <div className="loadingio-spinner-ellipsis-js28swoqlzo">
+        <div className="loadingio-spinner-ellipsis">
           <div className="load-spinner">
             <div></div><div></div><div></div><div></div><div></div>
           </div></div>

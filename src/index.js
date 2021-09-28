@@ -1,29 +1,34 @@
+import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// import Upload from './Upload'
-// import Test from './Test'
+import About from './About'
 import reportWebVitals from './reportWebVitals';
-//import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 
 ReactDOM.render(
+  <div>
+  <header>
 
-  // <Router>
-  //     <Link to = '/'>Home</Link>
-  //     <Link to = '/upload'>Upload</Link>
-  //     <Link to = '/test'>Test</Link>
+  <h1>EzNotes</h1>
+</header>
+  <Router>
+   
+
+    <div className='navbar'>
+      <Link to = '/'>Home</Link>
+      <Link to = '/about'>About</Link>
+      </div>
 
 
+      <Switch>
+        <Route path = '/about' component={About}/>
+        <Route path = '/*' component={App}/>
+      </Switch>
 
-  //     <Switch>
-  //       <Route path = '/upload' component={Upload}/>
-  //       <Route path = '/test' component = {Test}/>
-  //       <Route path = '/*' component={App}/>
-  //     </Switch>
-
-  // </Router>
-  <App/>
+  </Router>
+  </div>
     ,
   document.getElementById('root')
 );
