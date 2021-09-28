@@ -92,6 +92,23 @@ a:hover {
 }
 
 
+.search-div{
+  margin-left: 15px;
+}
+
+.search-div button{
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.search-div a{
+  margin-bottom: 10px;
+}
+
+.search{
+  margin-left: 25px;
+}
+
 
 
 @keyframes load-spinner {

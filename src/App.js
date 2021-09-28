@@ -23,14 +23,11 @@ function App() {
   const [values, handleChange] = useForm({ search: '' })
   const [searched, setSearched] = useState([])
 
-  let config = process.env.REACT_APP_FIREBASE
-  const firebaseConfig = {
-    config
-  };
+  const config = process.env.REACT_APP_FIREBASE;
+  const firebaseConfig = { config };
 
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
-
 
   function newData(too) {
 
@@ -43,18 +40,13 @@ function App() {
   function search() {
     let arr = []
 
-
-
     if (loading === false) {
       let note = pageData.notes
 
-
       note.forEach((names, index) => {
         if (pageData.notes[index] !== null) {
-          pageData.notes[index].forEach((element,index,array) => {
+          pageData.notes[index].forEach((element, index, array) => {
             arr.push(element)
-       
-
           })
         }
       })
@@ -70,11 +62,8 @@ function App() {
   }
 
   useEffect(() => {
-
     search()
-
   }, [values.search])
-
 
   function next(e) {
 
@@ -131,7 +120,6 @@ function App() {
       setLoading(false)
       //setRefresh(Math.floor(Math.random() * 1000) + 1)
 
-
     })
       .catch(function (error) {
         console.log(error);
@@ -151,12 +139,10 @@ function App() {
     <div className="App">
 
       <header>
-
         <h1>EzNotes</h1>
       </header>
 
-      <input className = 'search'name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
-
+      <input className='search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
 
       { loading ? <div className='spinner'>
         <div className="loadingio-spinner-ellipsis-js28swoqlzo">
@@ -171,14 +157,14 @@ function App() {
 
             {searched.map((name, index) => (
               <div className='search-div'>
-              <div key={index}>
-                {name.link === null ?
-                  <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={next}>{name.name}</button>
-                  : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank' onClick={next}>{name.name}</a></div>}
+                <div key={index}>
+                  {name.link === null ?
+                    <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={next}>{name.name}</button>
+                    : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank' onClick={next}>{name.name}</a></div>}
 
-                <br />
+                  <br />
 
-              </div>
+                </div>
               </div>
             ))
 
@@ -190,16 +176,9 @@ function App() {
 
             {currentFolder !== '' ? <p>Current Folder:{currentFolder}</p> : <p></p>}
 
-
-
-
-
-
             <img alt='back-icon' className='img-back' width='45px' height='45px' id='img-back' src={backarrow} type='button' onClick={back} />
 
             <div className='pages'>
-
-
 
               {Array.isArray(data) || null || undefined ?
                 data.map((names, index) => (
@@ -219,7 +198,6 @@ function App() {
           </div>
         )
       }
-
 
     </div>
   );
