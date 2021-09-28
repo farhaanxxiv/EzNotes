@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -8,9 +7,7 @@ import axios from 'axios';
 import backarrow from './img/backarrow.png'
 import { useForm } from './useForm'
 
-
 function App() {
-
 
 
   const [data, setData] = useState([]);
@@ -28,10 +25,23 @@ function App() {
   const app = initializeApp(id);
   getAnalytics(app);
 
+
   function newData(too) {
 
-    setData(pageData.notes[too]);
+    setData(pageData.notes[too])
+    setPage(page + 1)
+
+  }
+
+  function viewSearch(e) {
+    let to = e.currentTarget.getAttribute('name')
+    let name= e.currentTarget.getAttribute('title')
+
+    setData(pageData.notes[to])
     setPage(page + 1);
+    values.search = ''
+  
+
   }
 
   function search() {
@@ -42,8 +52,9 @@ function App() {
 
       note.forEach((names, index) => {
         if (pageData.notes[index] !== null) {
-          pageData.notes[index].forEach((element, index, array) => {
+          pageData.notes[index].forEach((element,index,array) => {
             arr.push(element)
+
           })
         }
       })
@@ -59,8 +70,11 @@ function App() {
   }
 
   useEffect(() => {
+
     search()
+
   }, [values.search])
+
 
   function next(e) {
 
@@ -96,9 +110,13 @@ function App() {
     if (page >= 1) {
       setPage(page - 1);
       direc.pop();
-      const last = direc[direc.length - 1].pg;
-      setFolder(direc[direc.length - 1].name)
-      setData(pageData.notes[last]);
+      try{
+        const last = direc[direc.length - 1].pg;
+        setFolder(direc[direc.length - 1].name)
+        setData(pageData.notes[last]);
+      }catch(e){
+        setData(pageData.notes[0])
+      }
     }
 
   }
@@ -136,10 +154,13 @@ function App() {
     <div className="App">
 
       <header>
+
         <h1>EzNotes</h1>
       </header>
-
-      <input className='search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
+      <div className = 'search'>
+      <label htmlFor="search">Seach for Subjects,Links : </label>
+      <input id = 'search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
+      </div>
 
       { loading ? <div className='spinner'>
         <div className="loadingio-spinner-ellipsis-js28swoqlzo">
@@ -149,19 +170,19 @@ function App() {
       </div>
         :
         (values.search !== '' ?
-          <div className='search-div'>
+          <div className='search-div' >
             <h2>Searched Items</h2>
 
             {searched.map((name, index) => (
-              <div className='search-div'>
-                <div key={index}>
-                  {name.link === null ?
-                    <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={next}>{name.name}</button>
-                    : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank' onClick={next}>{name.name}</a></div>}
+              <div className='search-div' key={index}>
+              <div >
+                {name.link === null ?
+                  <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={viewSearch}>{name.name}</button>
+                  : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank'>{name.name}</a></div>}
 
-                  <br />
+                <br />
 
-                </div>
+              </div>
               </div>
             ))
 
@@ -173,6 +194,7 @@ function App() {
 
             {currentFolder !== '' ? <p>Current Folder:{currentFolder}</p> : <p></p>}
 
+
             <img alt='back-icon' className='img-back' width='45px' height='45px' id='img-back' src={backarrow} type='button' onClick={back} />
 
             <div className='pages'>
@@ -180,17 +202,15 @@ function App() {
               {Array.isArray(data) || null || undefined ?
                 data.map((names, index) => (
 
-
                   <div key={index}>
                     {names.link === null ?
                       <button name={names.to} href={names.link} key={index} title={names.name} rel="noreferrer" target='_blank' onClick={next}>{names.name}</button>
-                      : <div className='a-div'><a name={names.to} href={names.link} key={index} rel="noreferrer" target='_blank' onClick={next}>{names.name}</a></div>}
+                      : <div className='a-div'><a name={names.to} href={names.link} key={index} rel="noreferrer" target='_blank' >{names.name}</a></div>}
 
                     <br />
 
                   </div>)) : <p>The Folder is Empty</p>
               }
-
             </div>
           </div>
         )
