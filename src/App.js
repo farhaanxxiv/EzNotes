@@ -23,8 +23,9 @@ function App() {
   const [values, handleChange] = useForm({ search: '' })
   const [searched, setSearched] = useState([])
 
-  const id = process.env.REACT_APP_FIREBASE
-  const app = initializeApp(JSON.parse(id));
+  const id = JSON.parse(process.env.REACT_APP_FIREBASE)
+  console.log(id)
+  const app = initializeApp(id);
   getAnalytics(app);
 
   function newData(too) {
