@@ -23,19 +23,15 @@ function App() {
   const [values, handleChange] = useForm({ search: '' })
   const [searched, setSearched] = useState([])
 
-  const config = process.env.REACT_APP_FIREBASE;
-  const firebaseConfig = { config };
-
-  const app = initializeApp(firebaseConfig);
+  const id = process.env.REACT_APP_FIREBASE
+  const app = initializeApp(JSON.parse(id));
   getAnalytics(app);
 
   function newData(too) {
 
     setData(pageData.notes[too]);
     setPage(page + 1);
-
   }
-
 
   function search() {
     let arr = []
