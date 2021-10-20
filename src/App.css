@@ -48,9 +48,17 @@ font-size: 24.5px;
 }
 
 
+#search{
+  font-size: 18px;
+}
 
 .whole-div{
-margin-left: 20px;
+margin: 20px ;
+padding: 10px;
+border: white 1px solid;
+width: max-content;
+border-radius: 8px;
+background-color: #131313;
 }
 
 .whole-div p{
@@ -129,7 +137,14 @@ a:hover {
 
 
 .search-div{
-  margin-left: 15px;
+ 
+    margin: 20px ;
+    padding: 10px;
+    border: white 1px solid;
+    width: max-content;
+    border-radius: 8px;
+    background-color: #131313;
+    
 }
 
 .search-div button{
