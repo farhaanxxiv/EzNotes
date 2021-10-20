@@ -152,7 +152,7 @@ function App() {
 
       
       <div className = 'search'>
-      <label htmlFor="search">Seach for Subjects,Links : </label>
+      {/* <label htmlFor="search">Seach for Subjects,Links : </label> */}
       <input id = 'search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
       </div>
 
@@ -186,7 +186,7 @@ function App() {
           <div className='whole-div'>
             <p>Page No.{page + 1}</p>
 
-            {currentFolder !== '' ? <p>Current Folder:{currentFolder}</p> : <p></p>}
+            {currentFolder !== '' ? <p>{currentFolder}</p> : <p>Home</p>}
 
 
             <img alt='back-icon' className='img-back' width='45px' height='45px' id='img-back' src={backarrow} type='button' onClick={back} />
