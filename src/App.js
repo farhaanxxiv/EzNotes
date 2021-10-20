@@ -168,7 +168,7 @@ function App() {
             <h2>Searched Items</h2>
 
             {searched.map((name, index) => (
-              <div className='search-div' key={index}>
+              <div className='div' key={index}>
               <div >
                 {name.link === null ?
                   <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={viewSearch}>{name.name}</button>
