@@ -33,12 +33,12 @@ function App() {
 
   function viewSearch(e) {
     let to = e.currentTarget.getAttribute('name')
-    let name= e.currentTarget.getAttribute('title')
+    let name = e.currentTarget.getAttribute('title')
 
     setData(pageData.notes[to])
     setPage(page + 1);
     values.search = ''
-  
+
 
   }
 
@@ -50,7 +50,7 @@ function App() {
 
       note.forEach((names, index) => {
         if (pageData.notes[index] !== null) {
-          pageData.notes[index].forEach((element,index,array) => {
+          pageData.notes[index].forEach((element, index, array) => {
             arr.push(element)
           })
         }
@@ -107,11 +107,11 @@ function App() {
     if (page >= 1) {
       setPage(page - 1);
       direc.pop();
-      try{
+      try {
         const last = direc[direc.length - 1].pg;
         setFolder(direc[direc.length - 1].name)
         setData(pageData.notes[last]);
-      }catch(e){
+      } catch (e) {
         setData(pageData.notes[0])
       }
     }
@@ -150,13 +150,13 @@ function App() {
   return (
     <div className="App">
 
-      
-      <div className = 'search'>
-      {/* <label htmlFor="search">Seach for Subjects,Links : </label> */}
-      <input id = 'search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
+
+      <div className='search'>
+        {/* <label htmlFor="search">Seach for Subjects,Links : </label> */}
+        <input id='search' name='search' value={values.search} onChange={handleChange} type='text' placeholder='Search' />
       </div>
 
-      { loading ? <div className='spinner'>
+      {loading ? <div className='spinner'>
         <div className="loadingio-spinner-ellipsis">
           <div className="load-spinner">
             <div></div><div></div><div></div><div></div><div></div>
@@ -169,14 +169,14 @@ function App() {
 
             {searched.map((name, index) => (
               <div className='div' key={index}>
-              <div >
-                {name.link === null ?
-                  <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={viewSearch}>{name.name}</button>
-                  : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank'>{name.name}</a></div>}
+                <div >
+                  {name.link === null ?
+                    <button name={name.to} href={name.link} key={index} title={name.name} rel="noreferrer" target='_blank' onClick={viewSearch}>{name.name}</button>
+                    : <div className='a-div'><a name={name.to} href={name.link} key={index} rel="noreferrer" target='_blank'>{name.name}</a></div>}
 
-                <br />
+                  <br />
 
-              </div>
+                </div>
               </div>
             ))
 
